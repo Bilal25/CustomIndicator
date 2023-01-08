@@ -102,7 +102,6 @@ public class IndicatorSeekBar extends View {
     //indicator
     private Indicator mIndicator;//the pop window above the seek bar
     private int mIndicatorColor;
-    public int mIndicatorColorv2;
     private int mIndicatorTextColor;
     private boolean mIndicatorStayAlways;//true if the indicator didn't dismiss after initial.
     private int mIndicatorTextSize;
@@ -181,7 +180,6 @@ public class IndicatorSeekBar extends View {
     IndicatorSeekBar(Builder builder) {
         super(builder.context);
         this.mContext = builder.context;
-
         int defaultPadding = SizeUtils.dp2px(mContext, 16);
         setPadding(defaultPadding, getPaddingTop(), defaultPadding, getPaddingBottom());
         this.apply(builder);
@@ -235,9 +233,7 @@ public class IndicatorSeekBar extends View {
         initTextsTypeface(ta.getInt(R.styleable.IndicatorSeekBar_isb_tick_texts_typeface, -1), builder.tickTextsTypeFace);
         //indicator
         mShowIndicatorType = ta.getInt(R.styleable.IndicatorSeekBar_isb_show_indicator, builder.showIndicatorType);
-      //  mIndicatorColor = ta.getColor(R.styleable.IndicatorSeekBar_isb_indicator_color, builder.indicatorColor);
         mIndicatorColor = ta.getColor(R.styleable.IndicatorSeekBar_isb_indicator_color, builder.indicatorColor);
-        //  mIndicatorColor  = Color.parseColor("#000000");
         mIndicatorTextSize = ta.getDimensionPixelSize(R.styleable.IndicatorSeekBar_isb_indicator_text_size, builder.indicatorTextSize);
         mIndicatorTextColor = ta.getColor(R.styleable.IndicatorSeekBar_isb_indicator_text_color, builder.indicatorTextColor);
         int indicatorContentViewId = ta.getResourceId(R.styleable.IndicatorSeekBar_isb_indicator_content_layout, 0);
@@ -1349,7 +1345,7 @@ public class IndicatorSeekBar extends View {
         if (!mIndicatorStayAlways || mIndicator == null) {
             return;
         }
-        mIndicator.setProgressTextView(getIndicatorTextString(),color);
+        mIndicator.setProgressTextView(mIndicatorTextFormat,color);
         mIndicatorContentView.measure(0, 0);
         int measuredWidth = mIndicatorContentView.getMeasuredWidth();
         float thumbCenterX = getThumbCenterX();
@@ -1612,10 +1608,6 @@ public class IndicatorSeekBar extends View {
         return mMax;
     }
 
-    public int getmindicator(int i) {
-        return mIndicatorColor;
-    }
-
     /**
      * the lower limit of this seek bar's range.
      *
@@ -1668,13 +1660,6 @@ public class IndicatorSeekBar extends View {
         invalidate();
         updateStayIndicator(mIndicatorColor);
     }
-
-    public synchronized void setmIndicatorColor(int color) {
-        this.mIndicatorColor = color;
-        updateStayIndicator(color);
-
-    }
-
 
     /**
      * Set the min value for SeekBar

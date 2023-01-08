@@ -14,7 +14,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
-
 /**
  * created by zhuangguangquan on 2018/6/3
  * <p>
@@ -43,7 +42,7 @@ public class Builder {
     boolean clearPadding = false;
     //indicator
     int showIndicatorType = IndicatorType.ROUNDED_RECTANGLE;
-    int indicatorColor = Color.parseColor("#CCCCCC");
+    int indicatorColor = Color.parseColor("#FF4081");
     int indicatorTextColor = Color.parseColor("#FFFFFF");
     int indicatorTextSize = 0;
     View indicatorContentView = null;

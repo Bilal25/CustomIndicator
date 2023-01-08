@@ -1,10 +1,8 @@
 package com.syedbilalali.customindicatorv2;
 
-
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
-
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 
 /**
  * created by zhuangguangquan on 2017/9/9
@@ -205,9 +202,10 @@ public class Indicator {
         if (mIndicatorView instanceof CircleBubbleView) {
             ((CircleBubbleView) mIndicatorView).setProgress(text);
         } else if (mProgressTextView != null) {
-            mTopContentView.setBackgroundColor(color);
-            mArrowView.setColor(color);
             mProgressTextView.setText(text);
+            mArrowView.setColor(color);
+            mTopContentView.setBackgroundColor(color);
+
         }
     }
 
@@ -261,7 +259,7 @@ public class Indicator {
         if (mIndicatorView instanceof CircleBubbleView) {
             ((CircleBubbleView) mIndicatorView).setProgress(tickTextString);
         } else if (mProgressTextView != null) {
-            mProgressTextView.setText(tickTextString);
+            //mProgressTextView.setText(tickTextString);
         }
     }
 
