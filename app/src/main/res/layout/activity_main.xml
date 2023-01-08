@@ -23,7 +23,7 @@
             <!--your layout-->
 
             <com.syedbilalali.customindicatorv2.IndicatorSeekBar
-                android:id="@+id/percent_indicator"
+                android:id="@+id/seekbarUI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:isb_indicator_color="@color/blue"

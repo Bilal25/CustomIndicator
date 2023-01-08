@@ -1875,6 +1875,12 @@ public class IndicatorSeekBar extends View {
         updateStayIndicator(color);
     }
 
+
+    public synchronized void setmIndicatorColor(int color) {
+        this.mIndicatorColor = color;
+        updateStayIndicator(color);
+
+    }
     /**
      * Collect and custom the color for each of section track.
      * <p>

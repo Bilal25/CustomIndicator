@@ -42,7 +42,10 @@ public class Builder {
     boolean clearPadding = false;
     //indicator
     int showIndicatorType = IndicatorType.ROUNDED_RECTANGLE;
-    int indicatorColor = Color.parseColor("#FF4081");
+//    int indicatorColor = Color.parseColor("#FF4081");
+//    int indicatorTextColor = Color.parseColor("#FFFFFF");
+
+    int indicatorColor = Color.parseColor("#CCCCCC");
     int indicatorTextColor = Color.parseColor("#FFFFFF");
     int indicatorTextSize = 0;
     View indicatorContentView = null;
