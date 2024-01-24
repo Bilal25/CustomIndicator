@@ -278,7 +278,7 @@ public class IndicatorSeekBar extends View {
     }
 
     private void collectTicksInfo() {
-        if (mTicksCount < 0 || mTicksCount > 50) {
+        if (mTicksCount < 0 || mTicksCount > 100) {
             throw new IllegalArgumentException("the Argument: TICK COUNT must be limited between (0-50), Now is " + mTicksCount);
         }
         if (mTicksCount != 0) {
@@ -1985,7 +1985,7 @@ public class IndicatorSeekBar extends View {
      * @param tickCount
      */
     public synchronized void setTickCount(int tickCount) {
-        if (mTicksCount < 0 || mTicksCount > 50) {
+        if (mTicksCount < 0 || mTicksCount > 100) {
             throw new IllegalArgumentException("the Argument: TICK COUNT must be limited between (0-50), Now is " + mTicksCount);
         }
         mTicksCount = tickCount;
