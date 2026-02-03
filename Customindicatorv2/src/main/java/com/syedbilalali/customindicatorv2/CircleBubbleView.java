@@ -99,8 +99,14 @@ public class CircleBubbleView extends View {
         canvas.drawText(mProgress, mIndicatorWidth / 2f, mIndicatorHeight / 2 + mTextHeight / 4, mPaint);
     }
 
-    void setProgress(String progress) {
-        this.mProgress = progress;
+//    void setProgress(String progress) {
+//        this.mProgress = progress;
+//        invalidate();
+//    }
+
+    void setProgress(CharSequence progress) {
+        this.mProgress = progress.toString(); // ⚠️ only if you need mProgress as String internally
+       // textView.setText(progress);          // 👈 TextView me Spannable safe
         invalidate();
     }
 

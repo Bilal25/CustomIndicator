@@ -198,16 +198,27 @@ public class Indicator {
         return mIndicatorView;
     }
 
-    void setProgressTextView(String text, int color) {
+//    void setProgressTextView(String text, int color) {
+//        if (mIndicatorView instanceof CircleBubbleView) {
+//            ((CircleBubbleView) mIndicatorView).setProgress(text);
+//        } else if (mProgressTextView != null) {
+//            mProgressTextView.setText(text);
+//            mArrowView.setColor(color);
+//            mTopContentView.setBackgroundColor(color);
+//
+//        }
+//    }
+
+    void setProgressTextView(CharSequence text, int color) {
         if (mIndicatorView instanceof CircleBubbleView) {
             ((CircleBubbleView) mIndicatorView).setProgress(text);
         } else if (mProgressTextView != null) {
-            mProgressTextView.setText(text);
+            mProgressTextView.setText(text);   // 👈 Spannable safe
             mArrowView.setColor(color);
             mTopContentView.setBackgroundColor(color);
-
         }
     }
+
 
     void updateIndicatorLocation(int offset) {
         setMargin(mIndicatorView, offset, -1, -1, -1);
@@ -254,15 +265,24 @@ public class Indicator {
         }
     }
 
+//    void refreshProgressText() {
+//        String tickTextString = mSeekBar.getIndicatorTextString();
+//        if (mIndicatorView instanceof CircleBubbleView) {
+//            ((CircleBubbleView) mIndicatorView).setProgress(tickTextString);
+//        } else if (mProgressTextView != null) {
+//            //mProgressTextView.setText(tickTextString);
+//        }
+//    }
+
     void refreshProgressText() {
-        String tickTextString = mSeekBar.getIndicatorTextString();
+        CharSequence tickText = mSeekBar.getIndicatorTextString(); // ✅ CharSequence
+
         if (mIndicatorView instanceof CircleBubbleView) {
-            ((CircleBubbleView) mIndicatorView).setProgress(tickTextString);
+            ((CircleBubbleView) mIndicatorView).setProgress(tickText); // ✅ works
         } else if (mProgressTextView != null) {
-            //mProgressTextView.setText(tickTextString);
+            mProgressTextView.setText(tickText); // ✅ works
         }
     }
-
     /**
      * call this method hide the indicator
      */

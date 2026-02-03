@@ -27,6 +27,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
@@ -108,7 +109,7 @@ public class IndicatorSeekBar extends View {
     private View mIndicatorContentView;//the view to replace the raw indicator all view
     private View mIndicatorTopContentView;//the view to replace the raw indicator content view
     private int mShowIndicatorType;//different indicator type.
-    private String mIndicatorTextFormat;
+    private CharSequence mIndicatorTextFormat;
     //tick marks
     private float[] mTickMarksX;//the tickMark's drawing X anchor
     private int mTicksCount;//the num of tickMarks
@@ -1541,16 +1542,43 @@ public class IndicatorSeekBar extends View {
         return mIndicatorContentView;
     }
 
-    String getIndicatorTextString() {
-        if (mIndicatorTextFormat != null && mIndicatorTextFormat.contains(FORMAT_TICK_TEXT)) {
-            if (mTicksCount > 2 && mTickTextsArr != null) {
-                return mIndicatorTextFormat.replace(FORMAT_TICK_TEXT, mTickTextsArr[getThumbPosOnTick()]);
+    CharSequence getIndicatorTextString() {
+        if (mIndicatorTextFormat != null) {
+
+            String format = mIndicatorTextFormat.toString(); // 🔁 logic ke liye
+
+            if (format.contains(FORMAT_TICK_TEXT)) {
+                if (mTicksCount > 2 && mTickTextsArr != null) {
+                    return format.replace(
+                            FORMAT_TICK_TEXT,
+                            mTickTextsArr[getThumbPosOnTick()]
+                    );
+                }
+            } else if (format.contains(FORMAT_PROGRESS)) {
+                return format.replace(
+                        FORMAT_PROGRESS,
+                        getProgressString(mProgress)
+                );
             }
-        } else if (mIndicatorTextFormat != null && mIndicatorTextFormat.contains(FORMAT_PROGRESS)) {
-            return mIndicatorTextFormat.replace(FORMAT_PROGRESS, getProgressString(mProgress));
         }
         return getProgressString(mProgress);
     }
+
+//    String getIndicatorTextString() {
+//        if (mIndicatorTextFormat != null && mIndicatorTextFormat.contains(FORMAT_TICK_TEXT)) {
+//            if (mTicksCount > 2 && mTickTextsArr != null) {
+//                return mIndicatorTextFormat.replace(FORMAT_TICK_TEXT, mTickTextsArr[getThumbPosOnTick()]);
+//            }
+//        } else if (mIndicatorTextFormat != null && mIndicatorTextFormat.contains(FORMAT_PROGRESS)) {
+//            return mIndicatorTextFormat.replace(FORMAT_PROGRESS, getProgressString(mProgress));
+//        }
+//        return getProgressString(mProgress);
+//    }
+//
+
+
+
+
 
     /*------------------API START-------------------*/
 
@@ -1869,11 +1897,23 @@ public class IndicatorSeekBar extends View {
      *
      * @param format the format for indicator text
      */
-    public void setIndicatorTextFormat(String format,int color) {
+//    public void setIndicatorTextFormat(String format,int color) {
+//        this.mIndicatorTextFormat = format;
+//        initTextsArray();
+//        updateStayIndicator(color);
+//    }
+
+
+
+    public void setIndicatorTextFormat(CharSequence format, @ColorRes int color) {
         this.mIndicatorTextFormat = format;
+
         initTextsArray();
         updateStayIndicator(color);
     }
+//    public void  setIndicatorTextFormat(text: CharSequence, @ColorRes color: Int) {
+//        indicatorTextView.text = text
+//    }
 
 
     public synchronized void setmIndicatorColor(int color) {
