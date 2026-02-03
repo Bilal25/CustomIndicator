@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 35
     namespace "com.syedbilalali.customindicatorv2"
 
     defaultConfig {
         minSdk 25
-        targetSdk 32
+        targetSdk 35
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
